@@ -17,11 +17,14 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < N; i++) {
         inFile >> numbers[i];
     }
+
+    std::cout << "Начальный массив:\n";
     std::copy(numbers.begin(), numbers.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
 
     numbers.erase(std::remove_if(numbers.begin(), numbers.end(), [a, b](int n) { return n < a || n > b; }), numbers.end());    
 
+    std::cout << "Массив после удаления вне диапозона:\n";
     std::copy(numbers.begin(), numbers.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
 
@@ -38,14 +41,17 @@ int main(int argc, char* argv[]) {
         numbers.erase(even_it);
     }    
 
+    std::cout << "Массив после удаления чётного после максимального:\n";
     std::copy(numbers.begin(), numbers.end(), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
 
     if (erased_position != -1) {
-        std::cout << erased_position << " " << erased_value << "\n";
+        std::cout << "Позиция удалённого элемента:\n" << erased_position << "\nУдалённый элемент:\n" << erased_value << "\n";
     }
 
+    std::cout << "Количество положительных:\n";
     std::cout << std::count_if(numbers.begin(), numbers.end(), [](int n) { return n > 0; }) << "\n";
+    std::cout << "Количество отрицательных:\n";
     std::cout << std::count_if(numbers.begin(), numbers.end(), [](int n) { return n < 0; });
 
     return 0;
